@@ -34,14 +34,15 @@
                 <img src="{{ asset('assets/img/login/login.jpg') }}" alt="image" class="form-image">
             </div>
             <div class="section mt-1">
-                <h1>Get started</h1>
-                <h4>Fill the form to log in</h4>
+                <h1>Presensi App</h1>
+                <h4>Silahkan Login</h4>
             </div>
             <div class="section mt-1 mb-5">
-                <form action="app-pages.html">
+                <form action="/proseslogin" method="POST">
+                    @csrf
                     <div class="form-group boxed">
                         <div class="input-wrapper">
-                            <input type="email" class="form-control" id="email1" placeholder="Email address">
+                            <input type="text"name="nik" class="form-control" id="nik" placeholder="NIK">
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -50,7 +51,7 @@
 
                     <div class="form-group boxed">
                         <div class="input-wrapper">
-                            <input type="password" class="form-control" id="password1" placeholder="Password">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
