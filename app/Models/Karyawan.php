@@ -12,7 +12,7 @@ class Karyawan extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = "karyawan";
-    protected $primarykey = "nik";
+    protected $primaryKey = "nik";
     protected $fillable = [
         'nik',
         'nama_lengkap',

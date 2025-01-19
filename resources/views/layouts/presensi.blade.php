@@ -28,7 +28,7 @@
     </div>
     <!-- * loader -->
 
-
+    @yield('header')
 
     <!-- App Capsule -->
     <div id="appCapsule">
