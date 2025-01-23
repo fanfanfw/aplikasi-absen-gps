@@ -25,8 +25,9 @@ Route::post('/proseslogin', [AuthController::class,'proseslogin']);
 });
 
 Route::middleware(['auth:karyawan'])->group(function(){
-Route::get('/dashboard', [DashboardController::class,'index']);
-Route::get('/proseslogout', [AuthController::class,'proseslogout']);
+    Route::get('/dashboard', [DashboardController::class,'index']);
+    Route::get('/proseslogout', [AuthController::class,'proseslogout']);
 
-Route::get('/presensi/create', [PresensiController::class,'create']);
+    Route::get('/presensi/create', [PresensiController::class,'create']);
+    Route::post('/presensi/store', [PresensiController::class,'store']);
 });

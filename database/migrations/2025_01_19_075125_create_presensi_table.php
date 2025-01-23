@@ -18,10 +18,11 @@ return new class extends Migration
             $table->char('nik', 5);
             $table->date('tgl_presensi');
             $table->time('jam_in');
-            $table->time('jam_out');
+            $table->time('jam_out')->nullable();
             $table->string('foto_in', 255);
-            $table->string('foto_out', 255);
-            $table->text('location');
+            $table->string('foto_out', 255)->nullable();
+            $table->text('lokasi_in');
+            $table->text('lokasi_out')->nullable();
             $table->timestamps();
 
             $table->foreign('nik')->references('nik')->on('karyawan')->onDelete('cascade');
