@@ -22,8 +22,8 @@ class PresensiController extends Controller
         $nik = Auth::guard('karyawan')->user()->nik;
         $tgl_presensi = date('Y-m-d');
         $jam = date('H:i:s'); 
-        $latitudekantor = -6.904126757855173;
-        $longitudekantor = 107.6067083850483;
+        $latitudekantor = -6.907314437760547;
+        $longitudekantor = 107.60338089393704;
         $lokasi = $request->lokasi;
         $lokasiuser = explode(",", $lokasi);
         $latitudeuser = $lokasiuser[0];
@@ -48,7 +48,7 @@ class PresensiController extends Controller
 
 
         $cek = DB::table('presensi')->where('tgl_presensi', $tgl_presensi)->where('nik', $nik)->count();
-        if($radius > 20){
+        if($radius > 50){
             echo "error|Maaf anda Berada diluar Radius, Jarak Anda " . $radius . " meter dari kantor|radius";
         }else{
             if($cek > 0){

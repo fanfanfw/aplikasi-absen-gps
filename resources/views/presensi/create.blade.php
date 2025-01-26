@@ -94,11 +94,11 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
         var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
-        var circle = L.circle([-6.904126757855173, 107.6067083850483], {
+        var circle = L.circle([-6.907314437760547, 107.60338089393704], {
         color: 'red',
         fillColor: '#f03',
         fillOpacity: 0.5,
-        radius: 20
+        radius: 50
         }).addTo(map);
     }
 
