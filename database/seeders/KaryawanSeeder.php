@@ -22,5 +22,14 @@ class KaryawanSeeder extends Seeder
             'password' => '12345', // Akan otomatis ter-hash oleh mutator
             'remember_token' => null,
         ]);
+
+        Karyawan::create([
+            'nik' => '12346',
+            'nama_lengkap' => 'Fan Fan Firgiawan',
+            'jabatan' => 'Head of IT',
+            'no_hp' => '089525521887',
+            'password' => '12346', // Akan otomatis ter-hash oleh mutator
+            'remember_token' => null,
+        ]);
     }
 }
