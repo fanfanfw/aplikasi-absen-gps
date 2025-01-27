@@ -18,7 +18,7 @@
 @endsection
 
 @section('content')
-<div class="row" style="margin-bottom:70px;">
+<div class="row" style="margin-top:70px;">
     <div class="col">
         @php
             $messagesuccess = Session::get('success');
