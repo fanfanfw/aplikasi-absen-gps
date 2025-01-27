@@ -37,7 +37,7 @@ class DashboardController extends Controller
         ->where('tgl_presensi', $hariini)
         ->orderBy('jam_in')
         ->get();
-        $namabulan = ["","Januari", "Febuari","Maret", "April", "Mei", "Juni", "JUli", "Agustus", "September", "Oktober", "November", "Desember"];
+        $namabulan = ["","Januari", "Febuari","Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
         return view("dashboard.dashboard", compact('presensihariini',
                                                              'historibulanini', 
