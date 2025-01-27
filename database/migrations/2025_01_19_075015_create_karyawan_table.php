@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama_lengkap', 100);
             $table->string('jabatan', 20);
             $table->string('no_hp', 13);
+            $table->string('foto',30)->nullable();
             $table->string('password', 255); // Perpanjang kolom jika menggunakan hash
             $table->string('remember_token', 255)->nullable();
             $table->timestamps();

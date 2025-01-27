@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class PresensiController extends Controller
 {
@@ -22,8 +25,8 @@ class PresensiController extends Controller
         $nik = Auth::guard('karyawan')->user()->nik;
         $tgl_presensi = date('Y-m-d');
         $jam = date('H:i:s'); 
-        $latitudekantor = -6.914043343949951;
-        $longitudekantor = 107.61016781260581;
+        $latitudekantor = -6.9107595740224905;
+        $longitudekantor = 107.60356608078636;
         $lokasi = $request->lokasi;
         $lokasiuser = explode(",", $lokasi);
         $latitudeuser = $lokasiuser[0];
@@ -96,5 +99,53 @@ class PresensiController extends Controller
         $kilometers = $miles * 1.609344;
         $meters = $kilometers * 1000;
         return compact('meters');
+    }
+
+    public function editprofile(){
+
+        $nik = Auth::guard('karyawan')->user()->nik; 
+        $karyawan = DB::table('karyawan')
+        ->where('nik', $nik)
+        ->first();
+        return view('presensi.editprofile', compact('karyawan'));
+    }
+
+    public function updateprofile(Request $request){
+        $nik = Auth::guard('karyawan')->user()->nik;
+        $nama_lenhkap = $request->nama_lengkap;
+        $no_hp = $request->no_hp;
+        $password = Hash::make($request->password);
+        $karyawan = DB::table('karyawan')->where('nik', $nik)->first();
+        if($request->hasFile('foto')){
+            $foto = $nik.".".$request->file('foto')->getClientOriginalExtension();
+        }else{
+            $foto =$karyawan->foto;
+        }
+        if(empty($request->password)){
+            
+            $data = [
+                'nama_lengkap'=> $nama_lenhkap,
+                'no_hp' => $no_hp,
+                'foto' => $foto
+            ];
+        } else{
+            $data = [
+                'nama_lengkap'=> $nama_lenhkap,
+                'no_hp' => $no_hp,
+                'password' => $password,
+                'foto' => $foto
+            ];
+        }
+
+        $update = DB::table('karyawan')->where('nik', $nik)->update($data);
+        if($update){
+            if($request->hasFile('foto')){
+                $folderPath = "public/uploads/karyawan/";
+                $request->file('foto')->storeAs($folderPath, $foto);
+            }
+            return Redirect::back()->with(['success' => 'Data Berhasil Di Update']);
+        }else{
+            return Redirect::back()->with(['error' => 'Data Gagal Di Update']);
+        }
     }
 }
