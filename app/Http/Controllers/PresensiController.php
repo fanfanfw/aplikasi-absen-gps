@@ -25,8 +25,8 @@ class PresensiController extends Controller
         $nik = Auth::guard('karyawan')->user()->nik;
         $tgl_presensi = date('Y-m-d');
         $jam = date('H:i:s'); 
-        $latitudekantor = -6.9107595740224905;
-        $longitudekantor = 107.60356608078636;
+        $latitudekantor = -6.907332098396311;
+        $longitudekantor = 107.60339117457359;
         $lokasi = $request->lokasi;
         $lokasiuser = explode(",", $lokasi);
         $latitudeuser = $lokasiuser[0];
@@ -147,5 +147,26 @@ class PresensiController extends Controller
         }else{
             return Redirect::back()->with(['error' => 'Data Gagal Di Update']);
         }
+    }
+
+    public function histori(){
+
+        $namabulan = ["", "Januari", "Febuari","Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        return view('presensi.histori', compact('namabulan'));
+    }
+
+    public function gethistori(Request $request){
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+        $nik = Auth::guard('karyawan')->user()->nik;
+
+        $histori = DB::table('presensi')
+        ->whereRaw('MONTH(tgl_presensi)="'. $bulan . '"')
+        ->whereRaw('YEAR(tgl_presensi)="'. $tahun . '"')
+        ->where('nik', $nik)
+        ->orderBy('tgl_presensi')
+        ->get();
+
+        return view('presensi.gethistori', compact('histori'));
     }
 }
