@@ -43,8 +43,8 @@
                     <div class="form-group">
                         <select name="status" id="status" class="form-control">
                         <option value="">Izin / Sakit</option>
-                        <option value="1">Izin</option>
-                        <option value="2">Sakit</option>
+                        <option value="i">Izin</option>
+                        <option value="s">Sakit</option>
                     </select>
                     </div>
                     <div class="form-group">
