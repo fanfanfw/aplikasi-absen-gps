@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
     $this->call([
         PresensiSeeder::class,
     ]);
+    $this->call([
+        PengajuanIzinSeeder::class,
+    ]);
 }
 
 }
