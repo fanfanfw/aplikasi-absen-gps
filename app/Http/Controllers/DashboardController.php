@@ -58,4 +58,8 @@ class DashboardController extends Controller
                                                                     ));
 
     }
+
+    public function dashboardadmin(){
+        return view('dashboard.dashboardadmin');
+    }
 }
