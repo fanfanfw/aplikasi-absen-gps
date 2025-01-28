@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
     $this->call([
         PengajuanIzinSeeder::class,
     ]);
+    $this->call([
+        UserSeeder::class,
+    ]);
 }
 
 }

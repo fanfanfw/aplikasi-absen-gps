@@ -28,7 +28,8 @@ Route::middleware(['guest:user'])->group(function () {
     Route::get('/panel', function () {
     return view('auth.loginadmin');
     })->name('loginadmin');
-    });
+    Route::post('/prosesloginadmin', [AuthController::class,'prosesloginadmin']);
+});
 
 Route::middleware(['auth:karyawan'])->group(function(){
     Route::get('/dashboard', [DashboardController::class,'index']);
@@ -49,4 +50,11 @@ Route::middleware(['auth:karyawan'])->group(function(){
 
 });
 
-Route::get('/dashboardadmin', [DashboardController::class,'dashboardadmin']);
+
+
+Route::middleware(['auth:user'])->group(function(){
+    
+    Route::get('/panel/dashboardadmin', [DashboardController::class,'dashboardadmin']);
+    Route::get('/proseslogoutadmin', [AuthController::class,'proseslogoutadmin']);
+
+});
