@@ -3,7 +3,17 @@
 @section('header')
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-
+<style>
+    .datepicker-modal {
+        max-height: 430px !important;
+    }
+    .datepicker-date-display {
+        background-color: #1e74fd !important;
+    }
+    .datepicker-done, .datepicker-cancel{
+        color: #1e74fd !important;
+    }
+</style>
 {{-- App Header --}}
 
 <div class="appHeader bg-primary text-light">
