@@ -28,6 +28,10 @@ class DepartemenSeeder extends Seeder
             'kode_dept' => 'IT',
             'nama_dept' => 'Information Technology'
         ],
+        [   
+            'kode_dept' => 'FIN',
+            'nama_dept' => 'Finnance'
+        ],
         ]);
     }
 }

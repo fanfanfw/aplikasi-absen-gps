@@ -54,5 +54,14 @@ class KaryawanSeeder extends Seeder
             'kode_dept' => 'IT',
             'remember_token' => null,
         ]);
+        Karyawan::create([
+            'nik' => '12347',
+            'nama_lengkap' => 'Kiana',
+            'jabatan' => 'Finnance',
+            'no_hp' => '085624850907',
+            'password' => '12346', // Hash password
+            'kode_dept' => 'FIN',
+            'remember_token' => null,
+        ]);
     }
 }
