@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('karyawan', function (Blueprint $table) {
-            $table->char('nik', 5)->primary();
-            $table->string('nama_lengkap', 100);
-            $table->string('jabatan', 20);
-            $table->string('no_hp', 13);
-            $table->string('foto',255)->nullable();
-            $table->string('kode_dept', 3);
-            $table->string('password', 255); // Perpanjang kolom jika menggunakan hash
+        Schema::create('departemen', function (Blueprint $table) {
+            $table->char('kode_dept', 3)->primary();
+            $table->string('nama_dept', 50);
             $table->string('remember_token', 255)->nullable();
             $table->timestamps();
         });
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('karyawan');
+        Schema::dropIfExists('departemen');
     }
 };

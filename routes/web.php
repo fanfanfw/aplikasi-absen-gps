@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PresensiController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,4 +58,5 @@ Route::middleware(['auth:user'])->group(function(){
     Route::get('/panel/dashboardadmin', [DashboardController::class,'dashboardadmin']);
     Route::get('/proseslogoutadmin', [AuthController::class,'proseslogoutadmin']);
 
+    Route::get('/karyawan', [KaryawanController::class,'index']);
 });
