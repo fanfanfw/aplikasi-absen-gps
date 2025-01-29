@@ -59,4 +59,5 @@ Route::middleware(['auth:user'])->group(function(){
     Route::get('/proseslogoutadmin', [AuthController::class,'proseslogoutadmin']);
 
     Route::get('/karyawan', [KaryawanController::class,'index']);
+    Route::post('/karyawan/store', [KaryawanController::class,'store']);
 });
