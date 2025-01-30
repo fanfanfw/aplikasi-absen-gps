@@ -107,7 +107,21 @@
                                 @endif
                               </td>
                               <td>{{ $d->nama_dept }}</td>
-                              <td></td>
+                              <td>
+                                <div class="btn-group">
+                                  <a class="edit btn btn-success btn-sm mr-2" nik="{{ $d->nik }}">
+                                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
+                                  </a>
+
+                                  <form action="/karyawan/{{ $d->nik }}/delete" style="margin-left: 5px" method="POST">
+                                  @csrf
+                                  <a class="delete-confirm btn btn-danger btn-sm">
+                                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>                                  
+                                                                      
+                                  </a>
+                                </form>
+                                </div>
+                              </td>
                             </tr>
                           @endforeach
                         </tbody>
@@ -209,6 +223,20 @@
     </div>
   </div>
 </div>
+
+<div class="modal modal-blur fade" id="modal-editKaryawan" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-tittle">Edit Data Karyawan</h5>
+      <button type="button" class="btn-class" data-bs-disnmss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="loadeditform">
+          
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @push('myscript')
@@ -217,6 +245,40 @@
     $("#btnTambahkaryawan").click(function(){
       $("#modal-inputkaryawan").modal('show');
     })
+
+    $(".edit").click(function(){
+      var nik = $(this).attr('nik');
+      $.ajax({
+        type: 'POST',
+        url: '/karyawan/edit',
+        catch: false,
+        data:{
+          _token:"{{ csrf_token() }}",
+          nik:nik,
+        },
+        success: function(response){
+          $("#loadeditform").html(response);
+        }
+    });
+      $("#modal-editKaryawan").modal('show');
+    })
+
+  $(".delete-confirm").click(function(e){
+    var form = $(this).closest('form');
+    e.preventDefault();
+    Swal.fire({
+      title: 'Apakah anda yakin?',
+      text: "Data karyawan akan dihapus!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, Hapus !'
+    }).then((result) => {
+      form.submit();
+      Swal.fire('Deleted!', '', 'success')
+    })
+  });
 
     $("#frmKaryawan").submit(function(){
       var nik = $("#nik").val();
