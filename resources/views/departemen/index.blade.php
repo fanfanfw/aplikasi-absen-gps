@@ -6,7 +6,7 @@
         <div class="col">
           <!-- Page pre-title -->
           <div class="page-pretitle">
-            Karyawan
+            Departemen
           </div>
           <h2 class="page-title">
             Data Departemen

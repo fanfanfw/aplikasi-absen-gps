@@ -71,4 +71,8 @@ Route::middleware(['auth:user'])->group(function(){
     Route::post('/departemen/edit', [DepartemenController::class,'edit']);
     Route::post('/departemen/{kode_dept}/update', [DepartemenController::class,'update']);
     Route::post('/departemen/{kode_dept}/delete', [DepartemenController::class,'delete']);
+
+    Route::get('/presensi/monitoring', [PresensiController::class,'monitoring']);
+    Route::post('/getpresensi', [PresensiController::class,'getpresensi']);
+
 }); 
