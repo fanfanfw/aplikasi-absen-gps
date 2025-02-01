@@ -44,9 +44,9 @@ class KaryawanController extends Controller
         }else{
             $foto = null;
         }
-
         try {
             $data = [
+                'nik' => $nik,
                 'nama_lengkap' => $nama_lengkap,
                 'jabatan' => $jabatan,
                 'no_hp' => $no_hp,
