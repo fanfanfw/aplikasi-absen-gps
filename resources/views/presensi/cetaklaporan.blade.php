@@ -52,22 +52,7 @@
 <!-- Set also "landscape" if you need -->
 <body class="A4">
 
-  @php
-function selisih($jam_masuk, $jam_keluar)
-        {
-            list($h, $m, $s) = explode(":", $jam_masuk);
-            $dtAwal = mktime($h, $m, $s, "1", "1", "1");
-            list($h, $m, $s) = explode(":", $jam_keluar);
-            $dtAkhir = mktime($h, $m, $s, "1", "1", "1");
-            $dtSelisih = $dtAkhir - $dtAwal;
-            $totalmenit = $dtSelisih / 60;
-            $jam = explode(".", $totalmenit / 60);
-            $sisamenit = ($totalmenit / 60) - $jam[0];
-            $sisamenit2 = $sisamenit * 60;
-            $jml_jam = $jam[0];
-            return $jml_jam ." Jam" . " " . round($sisamenit2) . " Menit";
-        }
-@endphp
+ --}}
 
   <!-- Each sheet element should have the class "sheet" -->
   <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25 -->
@@ -147,10 +132,10 @@ function selisih($jam_masuk, $jam_keluar)
                 <td><img src="{{ url($path_in) }}" alt="" width="60" height="60"></td>
                 <td>{{ $d->jam_out != null ? $d->jam_out : 'Belum Absen' }}</td>
                 <td>
-                  @if ($d->jam_out != null)
+                @if ($d->jam_out != null)
                   <img src="{{ url($path_out) }}" alt="" width="60" height="60">
                   @else
-                  <img src="{{ asset('assets/img/noPhoto.png') }}" alt="">
+                  <img src="{{ asset('assets/img/noPhoto.png') }}" height="60" alt="">
                   @endif
                 </td>
                 <td>

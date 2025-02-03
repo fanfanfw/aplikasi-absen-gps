@@ -196,7 +196,7 @@
                   <a class="dropdown-item" href="/presensi/laporan">
                     Laporan Presensi
                   </a>
-                  <a class="dropdown-item" href="/departemen">
+                  <a class="dropdown-item" href="/presensi/rekap">
                     Rekap Presensi
                   </a>
                 </div>
