@@ -228,4 +228,29 @@ class PresensiController extends Controller
         ->first();
         return view('presensi.showmap', compact('presensi'));
     }
+
+    public function laporan(){
+        $namabulan = ["", "Januari", "Febuari","Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        $karyawan = DB::table('karyawan')->orderBy('nama_lengkap')->get();
+        return view('presensi.laporan', compact('namabulan', 'karyawan'));
+    }
+
+    public function cetaklaporan(Request $request){
+        $nik = $request->nik;
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+
+        $namabulan = ["", "Januari", "Febuari","Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        $karyawan = DB::table('karyawan')->where('nik',$nik)
+        ->join('departemen', 'karyawan.kode_dept', '=', 'departemen.kode_dept')
+        ->first();
+
+        $presensi = DB::table('presensi')
+        ->where('nik', $nik)
+        ->whereRaw('MONTH(tgl_presensi)="'. $bulan . '"')
+        ->whereRaw('YEAR(tgl_presensi)="'. $tahun . '"')
+        ->get();
+
+        return view('presensi.cetaklaporan', compact('namabulan', 'bulan', 'tahun', 'karyawan', 'presensi'));
+    }
 }
