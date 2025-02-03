@@ -11,7 +11,7 @@ function selisih($jam_masuk, $jam_keluar)
             $sisamenit = ($totalmenit / 60) - $jam[0];
             $sisamenit2 = $sisamenit * 60;
             $jml_jam = $jam[0];
-            return $jml_jam . ":" . round($sisamenit2);
+            return $jml_jam ." Jam" . " " . round($sisamenit2) . " Menit";
         }
 @endphp
 

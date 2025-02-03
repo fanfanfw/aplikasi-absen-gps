@@ -249,6 +249,7 @@ class PresensiController extends Controller
         ->where('nik', $nik)
         ->whereRaw('MONTH(tgl_presensi)="'. $bulan . '"')
         ->whereRaw('YEAR(tgl_presensi)="'. $tahun . '"')
+        ->orderBy('tgl_presensi')
         ->get();
 
         return view('presensi.cetaklaporan', compact('namabulan', 'bulan', 'tahun', 'karyawan', 'presensi'));
