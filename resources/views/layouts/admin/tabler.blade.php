@@ -32,6 +32,9 @@
       body {
       	font-feature-settings: "cv03", "cv04", "cv11";
       }
+      .badge {
+        --tblr-badge-color: white !important;
+      }
     </style>
   </head>
   <body >
