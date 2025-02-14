@@ -16,6 +16,67 @@
     <div class="container-xl">
         <div class="row">
             <div class="col-12">
+                <form action="/presensi/izinsakit" method="GET" autocomplete="off">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-calendar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M11 15h1" /><path d="M12 15v3" /></svg>
+                                </span>
+                              <input type="text" name="dari" value="{{ Request('dari') }}" class="form-control" id="dari" placeholder="Dari">
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                              <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-calendar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M11 15h1" /><path d="M12 15v3" /></svg>
+                                </span>
+                              <input type="text" name="sampai" value="{{ Request('sampai') }}" class="form-control" id="sampai" placeholder="Sampai">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-barcode"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7v-1a2 2 0 0 1 2 -2h2" /><path d="M4 17v1a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v1" /><path d="M16 20h2a2 2 0 0 0 2 -2v-1" /><path d="M5 11h1v2h-1z" /><path d="M10 11l0 2" /><path d="M14 11h1v2h-1z" /><path d="M19 11l0 2" /></svg>
+                                </span>
+                            <input type="text" name="nik" value="{{ Request('nik') }}" class="form-control" id="nik" placeholder="NIK">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg>
+                                </span>
+                            <input type="text" name="nama_lengkap" value="{{ Request('nama_lengkap') }}" class="form-control" id="nama_lengkap" placeholder="Nama Karyawan">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <select name="status_approved" id="status_approved" class="form-select">
+                                    <option value="">Pilih Status</option>
+                                    <option value="1" {{ Request('status_approved') == 1 ? 'selected' : '' }}>Disetujui</option>
+                                    <option value="2" {{ Request('status_approved') == 2 ? 'selected' : '' }}>Ditolak</option>
+                                    <option value="0" {{ Request('status_approved') === '0' ? 'selected' : '' }}>Menunggu</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="submit">
+                                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+                                    Cari data
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -65,6 +126,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $izinsakit->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>
@@ -118,6 +180,12 @@
             $("#id_izinsakit_form").val(id_izinsakit);
             $("#modal-izinsakit").modal("show");
         });
+
+        $("#dari, #sampai").datepicker({ 
+        autoclose: true, 
+        todayHighlight: true,
+        format: 'yyyy-mm-dd' // Format tanggal
+    });
     });
 </script>
 @endpush

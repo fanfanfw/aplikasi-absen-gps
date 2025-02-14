@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PengajuanIzin;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -313,11 +314,30 @@ class PresensiController extends Controller
         return view('presensi.cetakrekap', compact('bulan', 'tahun', 'rekap', 'namabulan'));
     }
 
-    public function izinsakit(){
-        $izinsakit = DB::table('pengajuan_izin')
-        ->join('karyawan', 'pengajuan_izin.nik', '=', 'karyawan.nik')
-        ->orderBy('tgl_izin', 'desc')
-        ->get();
+    public function izinsakit(Request $request){
+
+        $query = PengajuanIzin::query();
+        $query->select('id', 'tgl_izin', 'pengajuan_izin.nik', 'nama_lengkap', 'jabatan', 'status', 'status_approved', 'keterangan');
+        $query->join('karyawan', 'pengajuan_izin.nik', '=', 'karyawan.nik');
+        if(!empty($request->dari) && !empty($request->sampai)){
+            $query->whereBetween('tgl_izin', [$request->dari, $request->sampai]);
+        }
+
+        if(!empty($request->nik)){
+            $query->where('pengajuan_izin.nik',$request->nik);
+        }
+
+        if(!empty($request->nama_lengkap)){
+            $query->where('nama_lengkap','like','%'.$request->nama_lengkap.'%');
+        }
+
+        if($request->status_approved != ""){
+            $query->where('status_approved',$request->status_approved);
+        }
+
+        $query->orderBy('tgl_izin', 'desc');
+        $izinsakit = $query->paginate(2);
+        $izinsakit->appends($request->all());
         return view('presensi.izinsakit', compact('izinsakit'));
     }
 
@@ -345,5 +365,14 @@ class PresensiController extends Controller
             return Redirect::back()->with(['warning' => 'Data Gagal Diupdate']);
 
         }
+    }
+
+    public function cekpengajuanizin(Request $request){
+        $tgl_izin = $request->tgl_izin;
+        $nik = Auth::guard('karyawan')->user()->nik;
+
+        $cek = DB::table('pengajuan_izin')->where('nik', $nik)->where('tgl_izin', $tgl_izin)->count();
+
+        return $cek;
     }
 }
